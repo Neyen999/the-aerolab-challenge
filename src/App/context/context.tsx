@@ -2,13 +2,15 @@ import { Center, CircularProgress } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { User } from '../types/User';
 import { getUserData } from '../api/api'
+import { Product } from '../types/Product';
 
 export interface Context {
   state: {
     user: User
   }
   actions: {
-    addPoints: () => void
+    addPoints: () => void,
+    redeem: (product: Product) => void
   }
 }
 
@@ -23,7 +25,7 @@ const UserProvider: React.FC = ({ children }) => {
   if (!user && loading) {
     return (
       <Center padding={12}>
-        <CircularProgress isIndeterminate color="primary.500" />
+        <CircularProgress isIndeterminate color='primary.500' />
       </Center>
     )
   }
@@ -39,8 +41,8 @@ const UserProvider: React.FC = ({ children }) => {
   }, [])
 
   const handleAddPoints = () => {
-    const pointsUrl = "https://coding-challenge-api.aerolab.co/user/points"
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWVhYzcxZWNkZWVjMDAwMWEwNThkYzYiLCJpYXQiOjE2NDI3NzYzNTB9.ZNfBbSO62LgcI6iQbH8YuMPV8jyJYhcyfzpg7hyJFMo"
+    const pointsUrl = 'https://coding-challenge-api.aerolab.co/user/points'
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWVhYzcxZWNkZWVjMDAwMWEwNThkYzYiLCJpYXQiOjE2NDI3NzYzNTB9.ZNfBbSO62LgcI6iQbH8YuMPV8jyJYhcyfzpg7hyJFMo'
     const headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -48,9 +50,9 @@ const UserProvider: React.FC = ({ children }) => {
     }
 
     const postUserPoints = fetch(pointsUrl, {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
       headers: headers,
       referrerPolicy: 'same-origin',
       body: JSON.stringify({'amount': 1000})
@@ -58,9 +60,31 @@ const UserProvider: React.FC = ({ children }) => {
     setUser({...user, points: user.points + 1000})
   }
 
-  const state: Context["state"] = { user }
+  const handleRedeem = (product: Product) => {
+    if (!user) return
+    const redeemUrl = 'https://coding-challenge-api.aerolab.co/redeem'
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWVhYzcxZWNkZWVjMDAwMWEwNThkYzYiLCJpYXQiOjE2NDI3NzYzNTB9.ZNfBbSO62LgcI6iQbH8YuMPV8jyJYhcyfzpg7hyJFMo'
+    const headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': token
+    }
+
+    const history = fetch(redeemUrl, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      headers: headers,
+      referrerPolicy: 'same-origin',
+      body: JSON.stringify({'productId': product._id})
+    })
+    setUser({...user, redeemHistory: [...user.redeemHistory, product.id], points: user.points - product.cost})
+  }
+
+  const state: Context['state'] = { user }
   const actions = {
-    addPoints: handleAddPoints
+    addPoints: handleAddPoints,
+    redeem: handleRedeem
   }
 
   return (

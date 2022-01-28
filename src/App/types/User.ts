@@ -5,6 +5,6 @@ export interface User {
   name: string,
   points: number,
   createDate: string,
-  redeemHistory: Product[],
+  redeemHistory: Product["id"][],
   __v: number,
 }
