@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../context/context';
 import { Box, Container, Stack, Image, Text } from '@chakra-ui/react';
 import logo from "~/assets/logo.svg"
 import coin from "~/assets/icons/coin.svg"
-import { useGetUserData } from '../hooks/useGetUserData';
 
 export const NavBar = () => {
 
-  const { user, setUser } = useGetUserData()
-  useGetUserData()
+  const {
+    state: { user },
+    actions: { addPoints }
+  } = useContext(UserContext);
+
 
   return (
     user ?
@@ -34,29 +37,7 @@ export const NavBar = () => {
             direction="row"
             paddingX={3}
             paddingY={2}
-            onClick={() => {
-              const pointsUrl = "https://coding-challenge-api.aerolab.co/user/points"
-              const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWVhYzcxZWNkZWVjMDAwMWEwNThkYzYiLCJpYXQiOjE2NDI3NzYzNTB9.ZNfBbSO62LgcI6iQbH8YuMPV8jyJYhcyfzpg7hyJFMo"
-              const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': token
-              }
-
-              let cantidad = {
-                'amount': 1000
-              }
-
-              const postUserPoints = fetch(pointsUrl, {
-                method: "POST",
-                mode: "cors",
-                cache: "no-cache",
-                headers: headers,
-                referrerPolicy: 'same-origin',
-                body: JSON.stringify(cantidad)
-              })
-              setUser({...user, points: user.points + cantidad.amount})
-            }}
+            onClick={() => addPoints()}
             >
             <Text fontWeight="500">{user.points}</Text>
             <Image
