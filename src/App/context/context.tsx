@@ -20,7 +20,6 @@ const UserProvider: React.FC = ({ children }) => {
 
   const [user, setUser] = useState<User>({} as User);
   const [loading, setLoading] = useState<boolean>(true);
-  const [redeemed, setRedeemed] = useState([])
 
   if (!user && loading) {
     return (

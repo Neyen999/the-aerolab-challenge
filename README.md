@@ -1,3 +1,36 @@
+
+# Hi there! This is my solution to the Aerolab Challenge
+
+## Run this project
+
+```bash
+npm install
+```
+To install the project dependencies
+
+```bash
+npm run dev
+```
+To run the project in a local server
+
+## Project descripcion
+
+For this project, i used **Typescript** with **React**, and **ChakraUI** for the components build. Using Typescript with React is a great idea, you have a better control of what you are getting from the API, and what type of Props should your elements receive, minimizing the chance of error in the future
+
+## Libraries
+
+For this project, apart from ChakraUI, i used **ReactIcons** (for the pagination icons) and **axios** (for the GET request)
+
+## The most challenging part
+
+I came into this project widthout the slightest idea on how to make a **POST** request, somehow every online couse only teaches you how to make **GET** requests, so that gave me some troubles (almost an entire day of troubles but lets keep it short). Also, im kinda new on Typescript, so watching the challenge solution by ***[Goncy](https://www.youtube.com/watch?v=87KC6LBR54k)*** helped a lot watching how exactly you implement Typescript with React.
+.
+.
+.
+.
+.
+.
+
 ![Aerolab](./src/assets/logo.svg "Aerolab")
 
 # Aerolab challenge
