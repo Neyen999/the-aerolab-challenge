@@ -3,6 +3,7 @@ import { UserContext } from '../context/context';
 import { Box, Container, Stack, Image, Text } from '@chakra-ui/react';
 import logo from '~/assets/logo.svg'
 import coin from '~/assets/icons/coin.svg'
+import { Link } from 'react-router-dom';
 
 export const NavBar = () => {
 
@@ -22,13 +23,17 @@ export const NavBar = () => {
         direction='row'
         justifyContent='space-between'
         paddingY={3}>
-        <Image height={8} width={8} src={logo} />
+        <Link to='/'>
+          <Image height={8} width={8} src={logo} />
+        </Link>
         <Stack
           alignItems='center'
           color='gray.500'
           direction='row'
           spacing={3}>
-          <Text>{user.name}</Text>
+          <Link to='/myhistory'>
+            <Text>{user.name}</Text>
+          </Link>
           <Stack
             alignItems='center'
             backgroundColor='gray.100'

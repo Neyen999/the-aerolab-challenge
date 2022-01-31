@@ -17,9 +17,9 @@ export const ProductsList: React.FC<Props> = ({ products }) => {
   const [filter, setFilter] = useState<Filter>(Filter.MostRecent)
 
   const filters = {
-    'HighestPrice': [...products].sort((a, b) => b.cost - a.cost),
-    'LowestPrice': [...products].sort((a, b) => a.cost - b.cost),
-    'MostRecent': products
+    'Highest Price': [...products].sort((a, b) => b.cost - a.cost),
+    'Lowest Price': [...products].sort((a, b) => a.cost - b.cost),
+    'Most Recent': products
   }
 
   const filteredProducts = React.useMemo(() => {

@@ -8,8 +8,7 @@ export const Layout: React.FC = ({ children }) => {
       direction='column'
       backgroundColor='gray.100'
       flex={1}>
-      <NavBar />
-      <Center paddingY={6}>
+      <Center paddingY={3}>
         <Container maxWidth='6xl'>
           {children}
         </Container>

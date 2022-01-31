@@ -11,7 +11,7 @@ export interface Product {
 }
 
 export enum Filter {
-  MostRecent = 'MostRecent',
-  LowestPrice = 'LowestPrice',
-  HighestPrice = 'HighestPrice'
+  MostRecent = 'Most Recent',
+  LowestPrice = 'Lowest Price',
+  HighestPrice = 'Highest Price'
 }

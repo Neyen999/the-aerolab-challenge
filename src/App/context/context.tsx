@@ -20,7 +20,7 @@ const UserProvider: React.FC = ({ children }) => {
 
   const [user, setUser] = useState<User>({} as User);
   const [loading, setLoading] = useState<boolean>(true);
-
+  const [redeemed, setRedeemed] = useState([])
 
   if (!user && loading) {
     return (
@@ -76,7 +76,7 @@ const UserProvider: React.FC = ({ children }) => {
       cache: 'no-cache',
       headers: headers,
       referrerPolicy: 'same-origin',
-      body: JSON.stringify({'productId': product._id})
+      body: JSON.stringify({'productId': product.id})
     })
     setUser({...user, redeemHistory: [...user.redeemHistory, product.id], points: user.points - product.cost})
   }
