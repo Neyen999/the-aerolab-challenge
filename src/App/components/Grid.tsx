@@ -15,7 +15,7 @@ export const Grid: React.FC<Props> = ({ products }) => {
   return (
     <ChackraGrid marginTop={2} gap={6} templateColumns='repeat(auto-fill, minmax(256px, 1fr))' width='100%'>
       {
-        products.map(product => <ProductCard key={`product-${product._id}-${counter+=1}`} product={product} isSelected={selected === product.id} onClick={() => setSelected(product.id)}/>)
+        products.map(product => <ProductCard key={`product-${product.id}-${counter+=1}`} product={product} isSelected={selected === product.id} onClick={() => setSelected(product.id)}/>)
       }
     </ChackraGrid>
   );
