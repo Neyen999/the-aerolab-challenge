@@ -1,14 +1,15 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { UserProvider } from "./App/context/context";
-import { Layout } from "./App/containers/Layout";
-import { Home } from "~/App/screens/Home";
-import "./theme.css";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { UserProvider } from './App/context/context'
+import { Layout } from './App/containers/Layout'
+import { Home } from '~/App/screens/Home'
+import { NavBar } from './App/components/NavBar'
+import { RedeemProducts } from './App/screens/RedeemProducts'
+import { NotFound } from './App/screens/NotFound'
+import { ChakraProvider } from '@chakra-ui/react'
 import theme from '../theme'
-import { RedeemProducts } from "./App/screens/RedeemProducts";
-import { NavBar } from "./App/components/NavBar";
+import './theme.css'
 
 ReactDOM.render(
   <ChakraProvider theme={theme}>
@@ -18,11 +19,12 @@ ReactDOM.render(
           <NavBar />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/myhistory' element={<RedeemProducts />} />
+            <Route path='/redeem-history' element={<RedeemProducts />} />
+            <Route path='*' element={<NotFound />}/>
           </Routes>
         </BrowserRouter>
       </Layout>
     </UserProvider>
   </ChakraProvider>,
-  document.getElementById("root"),
-);
+  document.getElementById('root'),
+)

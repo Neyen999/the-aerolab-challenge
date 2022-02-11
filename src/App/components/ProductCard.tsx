@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { UserContext } from '../context/context'
 import { Product } from '../types/Product';
 import { Box, BoxProps, Button, Center, Divider, Flex, Image, Stack, Text } from '@chakra-ui/react';
@@ -6,10 +6,10 @@ import coin from '~/assets/icons/coin.svg'
 
 interface Props extends BoxProps {
   product: Product,
-  isSelected: boolean
 }
 
-export const ProductCard: React.FC<Props> = ({ product, isSelected, ...props }) => {
+export const ProductCard: React.FC<Props> = ({ product, ...props }) => {
+  const [selected, setSelected] = useState<boolean>(false)
 
   const { state: { user }, actions: { redeem } } = useContext(UserContext)
   const points = user.points
@@ -30,6 +30,7 @@ export const ProductCard: React.FC<Props> = ({ product, isSelected, ...props }) 
       position='relative'
       cursor={canBuy ? 'pointer': 'not-allowed'}
       opacity={canBuy ? 1 : 0.5}
+      onClick={() => setSelected(!selected)}
       >
       <Stack spacing={3} >
         <Stack
@@ -61,7 +62,7 @@ export const ProductCard: React.FC<Props> = ({ product, isSelected, ...props }) 
           <Text fontWeight='500'>{product.name}</Text>
         </Stack>
       </Stack>
-      { isSelected && <Flex
+      { selected && <Flex
                         alignItems='center'
                         borderRadius='sm'
                         height='100%'

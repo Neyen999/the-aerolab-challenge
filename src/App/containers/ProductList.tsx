@@ -1,6 +1,6 @@
-import { Divider, Flex, Stack } from '@chakra-ui/react';
-import React, { useState } from 'react';
-import { Product } from '../types/Product';
+import React, { useState } from 'react'
+import { Divider, Flex, Stack } from '@chakra-ui/react'
+import { Product } from '../types/Product'
 import { Filter } from '../types/Product'
 import { Count } from '../components/Count'
 import { Filters } from '../components/Filters'
@@ -10,14 +10,15 @@ import { Grid } from '../components/Grid'
 interface Props {
   products: Product[],
   totalProducts: number,
+  productsPerPage: number
+  currentPage: number,
   setCurrentPage : (number: number) => void,
-  currentPage: number
 }
 
 
 
-export const ProductsList: React.FC<Props> = ({ products, totalProducts, currentPage, setCurrentPage }) => {
-
+export const ProductsList: React.FC<Props> = ({ products, totalProducts, currentPage, productsPerPage, setCurrentPage }) => {
+  const totalPages = Math.ceil(totalProducts / productsPerPage)
   const [filter, setFilter] = useState<Filter>(Filter.MostRecent)
 
   const filters = {
@@ -43,12 +44,12 @@ export const ProductsList: React.FC<Props> = ({ products, totalProducts, current
         divider={<Divider borderColor='gray.300' height={12} orientation='vertical' />}>
           <Count current={currentPage * filteredProducts.length} total={totalProducts}/>
           <Filters active={filter} onChange={setFilter}/>
-          <Pagination paginate={paginate}/>
+          <Pagination currentPage={currentPage} totalPages={totalPages} paginate={paginate}/>
       </Stack>
       <Grid products={filteredProducts} />
       <Flex justifyContent='space-between' width='100%'>
         <Count current={currentPage * filteredProducts.length} total={totalProducts}/>
-        <Pagination paginate={paginate}/>
+        <Pagination currentPage={currentPage} totalPages={totalPages} paginate={paginate}/>
       </Flex>
     </Stack>
   )

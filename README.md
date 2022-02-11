@@ -19,11 +19,11 @@ For this project, i used **Typescript** with **React**, and **ChakraUI** for the
 
 ## Libraries
 
-For this project, apart from ChakraUI, i used **ReactIcons** (for the pagination icons) and **axios** (for the GET request)
+For this project, apart from **ChakraUI**, i used **ReactIcons** (for the pagination icons) and **axios** (specifically for the GET requests)
 
 ## The most challenging part
 
-I came into this project widthout the slightest idea on how to make a **POST** request, somehow every online couse only teaches you how to make **GET** requests, so that gave me some troubles (almost an entire day of troubles but lets keep it short). Also, im kinda new on Typescript, so watching the challenge solution by ***[Goncy](https://www.youtube.com/watch?v=87KC6LBR54k)*** helped a lot watching how exactly you implement Typescript with React.
+I came into this project without the slightest idea on how to make a **POST** request, somehow every online couse only teaches you how to make **GET** requests, so that gave me some troubles (almost an entire day of troubles but lets keep it short). Also, im kinda new on Typescript, so watching the challenge solution by ***[Goncy](https://www.youtube.com/watch?v=87KC6LBR54k)*** helped a lot watching how exactly you implement Typescript with React.
 .
 .
 .

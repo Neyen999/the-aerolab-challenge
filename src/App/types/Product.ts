@@ -1,6 +1,5 @@
 export interface Product {
-  // [x: string]: any;
-  id: string,
+  _id: string,
   name: string,
   cost: number,
   category: string,
